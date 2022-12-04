@@ -1,0 +1,25 @@
+# define the nodes
+node1 = Node()
+node2 = Node()
+node3 = Node()
+node4 = Node()
+
+# define the edges
+edge1 = Edge(node1, node2, weight=0.5)
+edge2 = Edge(node1, node3, weight=0.75)
+edge3 = Edge(node2, node4, weight=1.0)
+edge4 = Edge(node3, node4, weight=1.5)
+
+# set the hyperparameters
+node1.hyperparameters["learning_rate"] = 0.1
+node1.hyperparameters["momentum"] = 0.9
+node2.hyperparameters["learning_rate"] = 0.2
+node2.hyperparameters["momentum"] = 0.8
+node3.hyperparameters["learning_rate"] = 0.3
+node3.hyperparameters["momentum"] = 0.7
+node4.hyperparameters["learning_rate"] = 0.4
+node4.hyperparameters["momentum"] = 0.6
+edge1.hyperparameters["regularization"] = 0.01
+edge2.hyperparameters["regularization"] = 0.02
+edge3.hyperparameters["regularization"] = 0.03
+edge4.hyperparameters["regularization"] = 0.04
