@@ -1,0 +1,43 @@
+import numpy as np
+
+# define the diffusion function
+def diffuse(grid, diffusion_rate):
+    # calculate the number of rows and columns in the grid
+    rows, cols = grid.shape
+    
+    # create a copy of the grid to store the new values
+    new_grid = np.copy(grid)
+    
+    # iterate over the rows and columns of the grid
+    for row in range(rows):
+        for col in range(cols):
+            # calculate the total diffusion from the surrounding cells
+            total_diffusion = 0
+            
+            # check the cell above
+            if row > 0:
+                total_diffusion += grid[row-1][col]
+                
+            # check the cell below
+            if row < rows-1:
+                total_diffusion += grid[row+1][col]
+                
+            # check the cell to the left
+            if col > 0:
+                total_diffusion += grid[row][col-1]
+                
+            # check the cell to the right
+            if col < cols-1:
+                total_diffusion += grid[row][col+1]
+            
+            # calculate the new value for the cell
+            new_grid[row][col] = grid[row][col] + diffusion_rate * total_diffusion
+            
+    # return the updated grid
+    return new_grid
+
+# create a grid with random values
+grid = np.random.rand(10, 10)
+
+# diffuse the grid with a diffusion rate of 0.1
+grid = diffuse(grid, 0.1)
