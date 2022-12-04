@@ -1,0 +1,18 @@
+# Import necessary libraries
+import tensorflow as tf
+
+# Define the input and output layers
+input_layer = tf.keras.layers.Input(shape=(100,))
+output_layer = tf.keras.layers.Dense(100, activation='relu')(input_layer)
+
+# Create the model
+model = tf.keras.Model(inputs=input_layer, outputs=output_layer)
+
+# Compile the model
+model.compile(optimizer='adam', loss='mse')
+
+# Train the model on some data
+model.fit(X_train, y_train)
+
+# Use the model to make predictions
+y_pred = model.predict(X_test)
