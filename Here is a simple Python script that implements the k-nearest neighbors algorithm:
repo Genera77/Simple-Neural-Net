@@ -1,0 +1,36 @@
+#This script assumes that you have already installed 
+the necessary libraries, such as scikit-learn, 
+and that you have the data in the correct format.
+ The data should be a two-dimensional array of 
+input variables (X) and a one-dimensional array 
+of target variables (y). The script creates a 
+KNeighborsClassifier object and fits the model 
+to the data using the fit() method. Then, it 
+makes a prediction for a new data point and 
+prints the result. In this example, the 
+prediction should be 1, since the k-nearest 
+neighbors of the new data point are all of 
+class 1.
+
+# Import the necessary libraries
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+
+# Define the number of neighbors to use
+k = 5
+
+# Load the data
+X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]])
+y = np.array([0, 0, 1, 1, 1])
+
+# Create a KNeighborsClassifier object
+clf = KNeighborsClassifier(n_neighbors=k)
+
+# Fit the model using the data
+clf.fit(X, y)
+
+# Make a prediction for a new data point
+prediction = clf.predict([[11, 12]])
+
+# Print the prediction
+print(prediction)
