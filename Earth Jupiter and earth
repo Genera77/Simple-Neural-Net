@@ -1,0 +1,44 @@
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+
+# Import necessary astronomical data and calculations
+from astropy.coordinates import solar_system_ephemeris, EarthLocation
+from astropy.coordinates import get_body_barycentric, get_body, get_moon
+import astropy.units as u
+
+# Set the date for the calculation
+date = '2022-12-06'
+
+# Set the location of the observer (in this case, the location of Earth)
+loc = EarthLocation(lat=0*u.deg, lon=0*u.deg, height=0*u.m)
+
+# Set the solar system ephemeris to use
+solar_system_ephemeris.set('jpl')
+
+# Calculate the positions of Earth, the Sun, and Jupiter in 3D space
+earth_position = get_body_barycentric('earth', date)
+sun_position = get_body_barycentric('sun', date)
+jupiter_position = get_body_barycentric('jupiter', date)
+
+# Convert the positions to numpy arrays
+earth_position = np.array(earth_position.xyz)
+sun_position = np.array(sun_position.xyz)
+jupiter_position = np.array(jupiter_position.xyz)
+
+# Create a 3D figure
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the positions of Earth, the Sun, and Jupiter
+ax.scatter(earth_position[0], earth_position[1], earth_position[2], c='b', marker='o')
+ax.scatter(sun_position[0], sun_position[1], sun_position[2], c='r', marker='o')
+ax.scatter(jupiter_position[0], jupiter_position[1], jupiter_position[2], c='g', marker='o')
+
+# Add labels to the plot
+ax.set_xlabel('X (AU)')
+ax.set_ylabel('Y (AU)')
+ax.set_zlabel('Z (AU)')
+
+# Show the plot
+plt.show()
